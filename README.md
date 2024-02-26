@@ -10,7 +10,7 @@ Explain the problem statement
 
 ## Neural Network Model
 
-Include the neural network model diagram.
+![image](https://github.com/Madhav005/basic-nn-model/assets/110885274/836c168f-0904-4246-b326-9b3e6a4c79c0)
 
 ## DESIGN STEPS
 
@@ -43,32 +43,63 @@ Plot the performance plot
 Evaluate the model with the testing data.
 
 ## PROGRAM
-### Name:
-### Register Number:
+### Name: Madhavan M
+### Register Number: 212222040089
 ```python
-
-Include your code here
-
-
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from google.colab import auth
+import gspread
+from google.auth import default
+auth.authenticate_user()
+creds, _ = default()
+gc = gspread.authorize(creds)
+worksheet = gc.open('sampledl').sheet1
+data = worksheet.get_all_values()
+dataset1 = pd.DataFrame(data[1:], columns=data[0])
+dataset1 = dataset1.astype({'Input':'float'})
+dataset1 = dataset1.astype({'Output':'float'})
+dataset1.head()
+X = dataset1[['Input']].values
+y = dataset1[['Output']].values
+X
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size = 0.33,random_state = 33)
+Scaler = MinMaxScaler()
+Scaler.fit(X_train)
+X_train1 = Scaler.transform(X_train)
+ai_brain = Sequential([Dense(units=3,input_shape=[1]), Dense(units=3), Dense(units=1)])
+ai_brain.compile(optimizer="rmsprop", loss="mae")
+ai_brain.fit(X_train1, y_train, epochs=2000)
+loss_df = pd.DataFrame(ai_brain.history.history)
+loss_df.plot()
+X_test1 = Scaler.transform(X_test)
+ai_brain.evaluate(X_test1,y_test)
+X_n1 = [[30]]
+X_n1_1 = Scaler.transform(X_n1)
+ai_brain.predict(X_n1_1)
 ```
+
 ## Dataset Information
 
-Include screenshot of the dataset
+![Screenshot 2024-02-26 231340](https://github.com/Madhav005/basic-nn-model/assets/110885274/7ec3125d-d475-4ed5-a3e0-5e66f24f1380)
 
 ## OUTPUT
 
 ### Training Loss Vs Iteration Plot
 
-Include your plot here
+![Screenshot 2024-02-26 231611](https://github.com/Madhav005/basic-nn-model/assets/110885274/adfea0f3-11bb-4650-a25f-e7d7c13fa012)
 
 ### Test Data Root Mean Squared Error
 
-Find the test data root mean squared error
+![image](https://github.com/Madhav005/basic-nn-model/assets/110885274/f3408d4b-0f67-4b3d-a119-84bc6bf24189)
 
 ### New Sample Data Prediction
 
-Include your sample input and output here
+
 
 ## RESULT
 
-Include your result here
+Thus, a neural network regression model for the dataset is created and successfully executed.

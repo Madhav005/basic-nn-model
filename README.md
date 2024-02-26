@@ -6,7 +6,7 @@ To develop a neural network regression model for the given dataset.
 
 ## THEORY
 
-Explain the problem statement
+A neural network is a computer program inspired by how our brains work. It's used to solve problems by finding patterns in data. Imagine a network of interconnected virtual "neurons." Each neuron takes in information, processes it, and passes it along. A Neural Network Regression Model is a type of machine learning algorithm that is designed to predict continuous numeric values based on input data. It utilizes layers of interconnected nodes, or neurons, to learn complex patterns in the data.
 
 ## Neural Network Model
 
@@ -98,7 +98,7 @@ ai_brain.predict(X_n1_1)
 
 ### New Sample Data Prediction
 
-
+ ![image](https://github.com/Madhav005/basic-nn-model/assets/110885274/cf5e6ace-57b2-42df-84ab-420bd6dd64a1)
 
 ## RESULT
 
